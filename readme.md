@@ -43,6 +43,11 @@ For the following template
 <link rel="stylesheet" href="{{ css_path }}test.css" />
 ```
 
+Would render
+```
+<link rel="stylesheet" href="http://company.com/css/test.css" />
+```
+
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Carlos G. Limardo](http://limardo.org)
