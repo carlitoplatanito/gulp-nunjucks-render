@@ -31,7 +31,7 @@ gulp.task('default', function () {
 
 ### nunjucks-render(context)
 
-Same context as [`nunjucks.render()`](http://jlongster.github.io/nunjucks/api.html#precompile).
+Same context as [`nunjucks.render()`](http://jlongster.github.io/nunjucks/api.html#render).
 
 For example
 ```
@@ -51,3 +51,7 @@ Would render
 ## License
 
 MIT © [Carlos G. Limardo](http://limardo.org)
+
+## Shout-outs
+
+[Sindre Sorhus](http://sindresorhus.com/) who wrote the original gulp-nunjucks for precompiling Nunjucks templates. I updated his to render instead of precompile.
