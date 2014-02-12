@@ -39,11 +39,10 @@
   "devDependencies": {
     "mocha": "*"
   },
-  "readme": "# [gulp](https://github.com/wearefractal/gulp)-nunjucks [![Build Status](https://secure.travis-ci.org/sindresorhus/gulp-nunjucks.png?branch=master)](http://travis-ci.org/sindresorhus/gulp-nunjucks)\n\n> Precompile [Nunjucks](http://jlongster.github.io/nunjucks/) templates\n\n*Issues with the output should be reported on the Nunjucks [issue tracker](https://github.com/jlongster/nunjucks/issues).*\n\n\n## Install\n\nInstall with [npm](https://npmjs.org/package/gulp-nunjucks)\n\n```\nnpm install --save-dev gulp-nunjucks\n```\n\n\n## Example\n\n```js\nvar gulp = require('gulp');\nvar nunjucks = require('gulp-nunjucks');\n\ngulp.task('default', function () {\n\tgulp.src('templates/list.html')\n\t\t.pipe(nunjucks())\n\t\t.pipe(gulp.dest('dist'));\n});\n```\n\n\n## API\n\n### nunjucks(options)\n\nSame options as [`nunjucks.precompile()`](http://jlongster.github.io/nunjucks/api.html#precompile) except for `name`.\n\n#### options.name\n\nType: `Function`  \nDefault: *Relative template path. Example: `templates/list.html`*\n\nYou can override the default behavior by supplying a function which gets the current [File](https://github.com/wearefractal/vinyl#constructoroptions) object and is expected to return the name.\n\nExample:\n\n```js\n{\n\tname: function (file) {\n\t\treturn 'tpl-' + file.relative;\n\t}\n}\n```\n\n\n## License\n\nMIT © [Sindre Sorhus](http://sindresorhus.com)\n",
   "readmeFilename": "readme.md",
   "bugs": {
     "url": "https://github.com/climardo/gulp-nunjucks-render/issues"
   },
   "homepage": "https://github.com/climardo/gulp-nunjucks-render",
-  "_id": "gulp-nunjucks-render@0.0.1",
+  "_id": "gulp-nunjucks-render@0.0.1"
 }

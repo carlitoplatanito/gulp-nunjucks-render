@@ -54,4 +54,4 @@ MIT © [Carlos G. Limardo](http://limardo.org)
 
 ## Shout-outs
 
-[Sindre Sorhus](http://sindresorhus.com/) who wrote the original gulp-nunjucks for precompiling Nunjucks templates. I updated his to render instead of precompile.
+[Sindre Sorhus](http://sindresorhus.com/) who wrote the original [gulp-nunjucks](https://www.npmjs.org/package/gulp-nunjucks) for precompiling Nunjucks templates. I updated his to render instead of precompile.
