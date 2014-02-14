@@ -1,11 +1,11 @@
 {
   "name": "gulp-nunjucks-render",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Render Nunjucks templates",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/climardo/gulp-nunjucks-render"
+    "url": "git://github.com/carlosl/gulp-nunjucks-render"
   },
   "author": {
     "name": "Carlos G. Limardo",
@@ -41,8 +41,8 @@
   },
   "readmeFilename": "readme.md",
   "bugs": {
-    "url": "https://github.com/climardo/gulp-nunjucks-render/issues"
+    "url": "https://github.com/carlosl/gulp-nunjucks-render/issues"
   },
-  "homepage": "https://github.com/climardo/gulp-nunjucks-render",
+  "homepage": "https://github.com/carlosl/gulp-nunjucks-render",
   "_id": "gulp-nunjucks-render@0.0.1"
 }
