@@ -3,6 +3,8 @@ var gutil = require('gulp-util');
 var through = require('through2');
 var nunjucks = require('nunjucks');
 
+nunjucks.configure({watch:false}); // prevent nunjuck's built-in file watcher from competing with gulp's watch processes
+
 module.exports = function (options) {
 	options = options || {};
 
