@@ -3,6 +3,12 @@ var gutil = require('gulp-util');
 var through = require('through2');
 var nunjucks = require('nunjucks');
 
+/*
+ * turn off built-in file watcher
+ * more info: https://github.com/carlosl/gulp-nunjucks-render/pull/2
+ */
+nunjucks.configure({ autoescape: true, watch: false });
+
 module.exports = function (options) {
 	options = options || {};
 
@@ -19,8 +25,6 @@ module.exports = function (options) {
 
 		try {
 			options.name = typeof options.name === 'function' && options.name(file) || file.relative;
-			/* file.contents = new Buffer(nunjucks.precompileString(file.contents.toString(), options));
-			file.path = gutil.replaceExtension(file.path, '.js'); */
 
 			file.contents = new Buffer(nunjucks.renderString(file.contents.toString(), options));
 			file.path = gutil.replaceExtension(file.path, '.html');
