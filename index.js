@@ -37,3 +37,5 @@ module.exports = function (options) {
 		cb();
 	});
 };
+
+module.exports.nunjucks = nunjucks;
