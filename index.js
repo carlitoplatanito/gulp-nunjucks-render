@@ -3,12 +3,6 @@ var gutil = require('gulp-util');
 var through = require('through2');
 var nunjucks = require('nunjucks');
 
-/*
- * turn off built-in file watcher
- * more info: https://github.com/carlosl/gulp-nunjucks-render/pull/2
- */
-nunjucks.configure({ autoescape: true, watch: false });
-
 module.exports = function (options) {
 	options = options || {};
 
