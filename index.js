@@ -20,6 +20,7 @@ module.exports = function (options) {
 		try {
 			options.name = typeof options.name === 'function' && options.name(file) || file.relative;
 
+			nunjucks.configure(file.cwd, { watch: false });
 			file.contents = new Buffer(nunjucks.renderString(file.contents.toString(), options));
 			file.path = gutil.replaceExtension(file.path, '.html');
 
