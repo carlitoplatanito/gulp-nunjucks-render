@@ -28,7 +28,7 @@ gulp.task('default', function () {
 });
 ```
 
-Note: To keep Nunjucks render from eating up all your ram, make sure to specify your watch path. ```nunjucksRender.nunjucks.configure(['src/path/to/templates/']);```
+*Note: To keep Nunjucks render from eating up all your ram, make sure to specify your watch path. ```nunjucksRender.nunjucks.configure(['src/path/to/templates/']);``` This will also allow you to define your paths relatively.*
 
 ## API
 
