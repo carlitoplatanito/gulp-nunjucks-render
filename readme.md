@@ -21,11 +21,14 @@ var gulp = require('gulp');
 var nunjucksRender = require('gulp-nunjucks-render');
 
 gulp.task('default', function () {
-	gulp.src('templates/list.html')
+	nunjucksRender.nunjucks.configure(['src/templates/']);
+	return gulp.src('src/templates/*.html')
 		.pipe(nunjucksRender())
 		.pipe(gulp.dest('dist'));
 });
 ```
+
+Note: To keep Nunjucks render from eating up all your ram, make sure to specify your watch path. ```nunjucksRender.nunjucks.configure(['src/path/to/templates/']);```
 
 ## API
 
