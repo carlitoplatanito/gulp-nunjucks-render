@@ -2,6 +2,7 @@
 var gutil = require('gulp-util');
 var through = require('through2');
 var nunjucks = require('nunjucks');
+var data = require('gulp-data');
 
 module.exports = function (options) {
 	options = options || {};
@@ -10,6 +11,11 @@ module.exports = function (options) {
 		if (file.isNull()) {
 			this.push(file);
 			return cb();
+		}
+
+		if (file.data) {
+  			options = file.data;
+  			// or just options = _.extend(file.data, data) if you care to merge. Up to you.
 		}
 
 		if (file.isStream()) {
