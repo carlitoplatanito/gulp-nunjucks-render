@@ -1,7 +1,7 @@
 {
-  "name": "gulp-nunjucks-render-data",
-  "version": "0.1.3",
-  "description": "Render Nunjucks templates",
+  "name": "gulp-nunjucks-render",
+  "version": "0.1.3.1",
+  "description": "Render Nunjucks templates with data",
   "license": "MIT",
   "repository": {
     "type": "git",
