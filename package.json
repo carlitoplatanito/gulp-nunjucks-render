@@ -1,16 +1,11 @@
 {
-  "name": "gulp-nunjucks-render",
+  "name": "gulp-nunjucks-render-data",
   "version": "0.1.3",
   "description": "Render Nunjucks templates",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/carlosl/gulp-nunjucks-render"
-  },
-  "author": {
-    "name": "Carlos G. Limardo",
-    "email": "carlos.limardo@gmail.com",
-    "url": "http://limardo.org"
+    "url": "git://ryanluton/gulp-nunjucks-render.git"
   },
   "engines": {
     "node": ">=0.10.0"

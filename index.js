@@ -14,8 +14,12 @@ module.exports = function (options) {
 		}
 
 		if (file.data) {
-  			options = file.data;
-  			// or just options = _.extend(file.data, data) if you care to merge. Up to you.
+  			//options = file.data;
+  			//custom objext.index for prototype
+  			options = file.data.results[0];
+  			//custom gulp log messages
+  			var fileName = file.path.toString();
+  			gutil.log('views | loaded gulp data for ' + fileName.split('/').pop());
 		}
 
 		if (file.isStream()) {
