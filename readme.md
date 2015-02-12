@@ -28,6 +28,28 @@ gulp.task('default', function () {
 });
 ```
 
+### Example using gulp-data
+```js
+var gulp = require('gulp');
+var data = require('gulp-data');
+var nunjucksRender = require('gulp-nunjucks-render');
+
+var getDataForFile = function(file){
+    return {
+        examplekey: 'The template file is: ' + file.relative
+    }
+};
+
+gulp.task('default', function () {
+	nunjucksRender.nunjucks.configure(['src/templates/']);
+	return gulp.src('src/templates/*.html')
+	    .pipe(data(getDataForFile))
+		.pipe(nunjucksRender(/* context set by gulp data */))
+		.pipe(gulp.dest('dist'));
+});
+
+```
+
 *Note: To keep Nunjucks render from eating up all your ram, make sure to specify your watch path. ```nunjucksRender.nunjucks.configure(['src/path/to/templates/']);``` This will also allow you to define your paths relatively.*
 
 ## API
