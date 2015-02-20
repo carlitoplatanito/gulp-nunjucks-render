@@ -2,6 +2,7 @@
 var gutil = require('gulp-util');
 var through = require('through2');
 var nunjucks = require('nunjucks');
+var data = require('gulp-data');
 
 module.exports = function (options) {
 	options = options || {};
@@ -10,6 +11,15 @@ module.exports = function (options) {
 		if (file.isNull()) {
 			this.push(file);
 			return cb();
+		}
+
+		if (file.data) {
+  			//options = file.data;
+  			//custom objext.index for prototype
+  			options = file.data.results[0];
+  			//custom gulp log messages
+  			var fileName = file.path.toString();
+  			gutil.log('views | loaded gulp data for ' + fileName.split('/').pop());
 		}
 
 		if (file.isStream()) {
