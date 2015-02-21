@@ -27,18 +27,18 @@ module.exports = function (options) {
 			return cb();
 		}
 
-		try {
-			options.name = typeof options.name === 'function' && options.name(file) || file.relative;
-
-			file.contents = new Buffer(nunjucks.renderString(file.contents.toString(), options));
+		
+		options.name = typeof options.name === 'function' && options.name(file) || file.relative;
+		var _this = this;
+		nunjucks.renderString(file.contents.toString(), options, function (err, result) {
+			if (err) {
+				_this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
+			}
+			file.contents = new Buffer(result);
 			file.path = gutil.replaceExtension(file.path, '.html');
-
-		} catch (err) {
-			this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
-		}
-
-		this.push(file);
-		cb();
+			_this.push(file);
+			cb();
+		});
 	});
 };
 
