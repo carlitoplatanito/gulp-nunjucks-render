@@ -9,7 +9,7 @@ module.exports = function (options) {
 
     return through.obj(function (file, enc, cb) {
 
-        var data = _.extend(options, {});
+        var data = _.cloneDeep(options);
 
         if (file.isNull()) {
             this.push(file);
@@ -25,8 +25,6 @@ module.exports = function (options) {
             return cb();
         }
 
-
-        options.name = typeof options.name === 'function' && options.name(file) || file.relative;
         var _this = this;
         nunjucks.renderString(file.contents.toString(), data, function (err, result) {
             if (err) {
