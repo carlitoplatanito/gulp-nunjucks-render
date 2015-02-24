@@ -11,7 +11,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --reporter spec"
   },
   "files": [
     "index.js"
@@ -33,7 +33,9 @@
     "through2": "~0.4.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "gulp-data": "^1.2.0",
+    "mocha": "^2.1.0",
+    "should": "^5.0.1"
   },
   "readmeFilename": "readme.md",
   "bugs": {
