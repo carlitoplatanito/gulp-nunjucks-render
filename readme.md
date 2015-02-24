@@ -30,6 +30,30 @@ gulp.task('default', function () {
 
 *Note: To keep Nunjucks render from eating up all your ram, make sure to specify your watch path. ```nunjucksRender.nunjucks.configure(['src/path/to/templates/']);``` This will also allow you to define your paths relatively.*
 
+
+## Example with gulp data
+
+```js
+var gulp = require('gulp');
+var nunjucksRender = require('gulp-nunjucks-render');
+var data = require('gulp-data');
+
+function getDataForFile(file){
+    return {
+        example: 'data loaded for ' + file.relative
+    };
+}
+
+gulp.task('default', function () {
+	nunjucksRender.nunjucks.configure(['src/templates/']);
+	return gulp.src('src/templates/*.html')
+	    .pipe(data(getDataForFile))
+		.pipe(nunjucksRender())
+		.pipe(gulp.dest('dist'));
+});
+```
+
+
 ## API
 
 ### nunjucks-render(context)
