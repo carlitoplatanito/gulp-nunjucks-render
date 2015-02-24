@@ -5,7 +5,6 @@ var gutil = require('gulp-util');
 var nunjucksRender = require('../');
 var fs = require('fs');
 var path = require('path');
-var data = require('gulp-data');
 
 require('mocha');
 
