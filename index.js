@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 var gutil = require('gulp-util');
 var through = require('through2');
 var nunjucks = require('nunjucks');
@@ -14,12 +15,7 @@ module.exports = function (options) {
 		}
 
 		if (file.data) {
-  			//options = file.data;
-  			//custom objext.index for prototype
-  			options = file.data.results[0];
-  			//custom gulp log messages
-  			var fileName = file.path.toString();
-  			gutil.log('views | loaded gulp data for ' + fileName.split('/').pop());
+            options = _.merge(file.data, options);
 		}
 
 		if (file.isStream()) {
