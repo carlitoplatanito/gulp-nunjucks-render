@@ -3,7 +3,6 @@ var _ = require('lodash');
 var gutil = require('gulp-util');
 var through = require('through2');
 var nunjucks = require('nunjucks');
-var data = require('gulp-data');
 
 module.exports = function (options) {
 	options = options || {};
