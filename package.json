@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://ryanluton/gulp-nunjucks-render.git"
+    "url": "git://github.com/carlosl/gulp-nunjucks-render"
   },
   "engines": {
     "node": ">=0.10.0"
