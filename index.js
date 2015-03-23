@@ -4,8 +4,14 @@ var gutil = require('gulp-util');
 var through = require('through2');
 var nunjucks = require('nunjucks');
 
-module.exports = function (options) {
+module.exports = function (options, loaders, env ) {
     options = options || {};
+    
+    var compile = nunjucks;
+    
+    if( loaders || env ){
+        compile = new nunjucks.Environment( loaders, env );
+    }
 
     return through.obj(function (file, enc, cb) {
 
@@ -26,7 +32,7 @@ module.exports = function (options) {
         }
 
         var _this = this;
-        nunjucks.renderString(file.contents.toString(), data, function (err, result) {
+        compile.renderString(file.contents.toString(), data, function (err, result) {
             if (err) {
                 _this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
             }
