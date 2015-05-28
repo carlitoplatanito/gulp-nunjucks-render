@@ -75,6 +75,13 @@ Would render
 <link rel="stylesheet" href="http://company.com/css/test.css" />
 ```
 
+### Watch mode
+To prevent watch mode during gulp task use `watch` parameter:
+
+```
+nunjucksRender.nunjucks.configure([ './source' ], { watch: false });
+```
+
 ## License
 
 MIT © [Carlos G. Limardo](http://limardo.org)
