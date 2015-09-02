@@ -7,6 +7,9 @@ nunjucks.configure({ watch: false });
 
 module.exports = function (options) {
     options = options || {};
+    if (!options.ext) {
+        options.ext = '.html';
+    }
 
     return through.obj(function (file, enc, cb) {
 
@@ -32,7 +35,7 @@ module.exports = function (options) {
                 _this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
             }
             file.contents = new Buffer(result);
-            file.path = gutil.replaceExtension(file.path, '.html');
+            file.path = gutil.replaceExtension(file.path, options.ext);
             _this.push(file);
             cb();
         });
