@@ -7,10 +7,17 @@ nunjucks.configure({ watch: false });
 
 module.exports = function (options) {
     options = options || {};
+    // ext = output file extension
+    // Check if output file extension is mentioned or not
     if (!options.ext) {
+        // Apply default output extension
         options.ext = '.html';
     }
 
+    /*
+     * file = file
+     * cb   = callback function
+     */
     return through.obj(function (file, enc, cb) {
 
         var data = _.cloneDeep(options);
@@ -35,6 +42,7 @@ module.exports = function (options) {
                 _this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
             }
             file.contents = new Buffer(result);
+            // output file with the mentioned/default extension
             file.path = gutil.replaceExtension(file.path, options.ext);
             _this.push(file);
             cb();
