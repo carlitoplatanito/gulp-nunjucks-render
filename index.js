@@ -30,15 +30,21 @@ module.exports = function (options) {
         }
 
         var _this = this;
-        nunjucks.renderString(file.contents.toString(), data, function (err, result) {
+        try {
+          nunjucks.renderString(file.contents.toString(), data, function (err, result) {
             if (err) {
-                _this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
+              _this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
+              return cb();
             }
             file.contents = new Buffer(result);
             file.path = gutil.replaceExtension(file.path, options.ext);
             _this.push(file);
             cb();
-        });
+          });
+        } catch (err) {
+          _this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
+          cb();
+        }
     });
 };
 
