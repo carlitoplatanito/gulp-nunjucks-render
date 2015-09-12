@@ -42,6 +42,23 @@ describe('gulp-nunjucks-render', function(){
         stream.end();
     });
 
+    it('accept global env as second argument', function(done){
+        var stream = nunjucksRender({ html: '<strong>Hello World!</strong>' }, null, { autoescape: true });
+        var expected = getExpected('global.html');
+        var file = getFile('fixtures/global.nunj');
+
+        stream.once('data', function(output) {
+            should.exist(output);
+            should.exist(output.contents);
+            path.extname(output.path).should.equal('.html');
+            output.contents.toString().should.equal(expected);
+            done();
+        });
+        stream.write(file);
+        stream.end();
+    });
+
+
     it('should use nunjucks environment to resolve paths', function(done){
         var stream = nunjucksRender();
         var expected = getExpected('child.html');

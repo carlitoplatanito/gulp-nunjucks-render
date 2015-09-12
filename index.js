@@ -5,10 +5,15 @@ var through = require('through2');
 var nunjucks = require('nunjucks');
 nunjucks.configure({ watch: false });
 
-module.exports = function (options) {
+module.exports = function (options, loaders, env ) {
     options = options || {};
     if (!options.ext) {
         options.ext = '.html';
+    }
+
+    var compile = nunjucks;
+    if( loaders || env ){
+        compile = new nunjucks.Environment( loaders, env );
     }
 
     return through.obj(function (file, enc, cb) {
@@ -30,7 +35,7 @@ module.exports = function (options) {
         }
 
         var _this = this;
-        nunjucks.renderString(file.contents.toString(), data, function (err, result) {
+        compile.renderString(file.contents.toString(), data, function (err, result) {
             if (err) {
                 _this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
             }
