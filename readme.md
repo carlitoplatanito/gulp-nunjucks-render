@@ -21,14 +21,14 @@ var gulp = require('gulp');
 var nunjucksRender = require('gulp-nunjucks-render');
 
 gulp.task('default', function () {
-	nunjucksRender.nunjucks.configure(['src/templates/']);
+	nunjucksRender.nunjucks.configure(['src/templates/'], {watch: false});
 	return gulp.src('src/templates/*.html')
 		.pipe(nunjucksRender())
 		.pipe(gulp.dest('dist'));
 });
 ```
 
-*Note: To keep Nunjucks render from eating up all your ram, make sure to specify your watch path. ```nunjucksRender.nunjucks.configure(['src/path/to/templates/']);``` This will also allow you to define your paths relatively.*
+*Note: To keep Nunjucks render from eating up all your ram, make sure to specify your watch path. ```nunjucksRender.nunjucks.configure(['src/path/to/templates/'], {watch: false});``` This will also allow you to define your paths relatively.*
 
 
 ## Example with gulp data
@@ -89,3 +89,5 @@ MIT © [Carlos G. Limardo](http://limardo.org)
 ## Shout-outs
 
 [Sindre Sorhus](http://sindresorhus.com/) who wrote the original [gulp-nunjucks](https://www.npmjs.org/package/gulp-nunjucks) for precompiling Nunjucks templates. I updated his to render instead of precompile.
+
+[kristijanhusak](http://github.com/kristijanhusak) for bug fixes and help with maintenance.
