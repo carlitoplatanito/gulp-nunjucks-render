@@ -28,7 +28,7 @@ gulp.task('default', function () {
 });
 ```
 
-*Note: To keep Nunjucks render from eating up all your ram, make sure to specify your watch path. ```nunjucksRender.nunjucks.configure(['src/path/to/templates/'], {watch: false});``` This will also allow you to define your paths relatively.*
+*Note: To keep Nunjucks render from eating up all your ram, make sure to specify your watch path and turn off Nunjucks' internal watcher. ```nunjucksRender.nunjucks.configure(['src/path/to/templates/'], {watch: false});``` This will also allow you to define your paths relatively.*
 
 
 ## Example with gulp data
@@ -45,7 +45,7 @@ function getDataForFile(file){
 }
 
 gulp.task('default', function () {
-	nunjucksRender.nunjucks.configure(['src/templates/']);
+	nunjucksRender.nunjucks.configure(['src/templates/'], {watch: false});
 	return gulp.src('src/templates/*.html')
 	    .pipe(data(getDataForFile))
 		.pipe(nunjucksRender())
@@ -76,7 +76,7 @@ Would render
 ```
 
 ### Watch mode
-To prevent watch mode during gulp task use `watch` parameter:
+To prevent Nunjucks internal watch mode during gulp task use `watch` parameter:
 
 ```
 nunjucksRender.nunjucks.configure([ './source' ], { watch: false });
