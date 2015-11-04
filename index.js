@@ -42,10 +42,13 @@ module.exports = function (options, loaders, env ) {
         }
 
         var _this = this;
+
+        var filePath = file.path;
+
         try {
             compile.renderString(file.contents.toString(), data, function (err, result) {
                 if (err) {
-                  _this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
+                  _this.emit('error', new gutil.PluginError('gulp-nunjucks', err, {fileName: filePath}));
                   return cb();
                 }
                 file.contents = new Buffer(result);
@@ -55,7 +58,7 @@ module.exports = function (options, loaders, env ) {
                 cb();
             });
         } catch (err) {
-            _this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
+            _this.emit('error', new gutil.PluginError('gulp-nunjucks', err, {fileName: filePath}));
             cb();
         }
     });
