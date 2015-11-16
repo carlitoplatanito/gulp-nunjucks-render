@@ -43,7 +43,7 @@ module.exports = function (options, loaders, env ) {
 
         var _this = this;
         try {
-            compile.renderString(file.contents.toString(), data, function (err, result) {
+            compile.render(file.contents.toString(), data, function (err, result) {
                 if (err) {
                   _this.emit('error', new gutil.PluginError('gulp-nunjucks', err));
                   return cb();
