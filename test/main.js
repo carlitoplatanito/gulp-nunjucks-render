@@ -154,4 +154,47 @@ describe('gulp-nunjucks-render', function(){
 
     });
 
+
+    it('should throw an error', function(done) {
+        var stream = nunjucksRender();
+        var file = getFile('fixtures/import-error.nunj');
+
+        var onerror = function(err) {
+            should.exist(err);
+            this.removeListener('finish', onfinish);
+            done();
+        };
+
+        var onfinish = function() {
+            done(new Error("Template has a syntax error which wasn't thrown."));
+        };
+
+        stream.on('error', onerror);
+        stream.on('finish', onfinish);
+
+        stream.write(file);
+        stream.end();
+    });
+
+    it('error should contain file path', function(done) {
+        var stream = nunjucksRender();
+        var file = getFile('fixtures/import-error.nunj');
+
+        var onerror = function(err) {
+            should.exist(err);
+            err.should.have.property('fileName');
+            this.removeListener('finish', onfinish);
+            done();
+        };
+
+        var onfinish = function() {
+            done(new Error("Template has a syntax error which wasn't thrown."));
+        };
+
+        stream.on('error', onerror);
+        stream.on('finish', onfinish);
+
+        stream.write(file);
+        stream.end();
+    });
 });
