@@ -133,14 +133,14 @@ describe('gulp-nunjucks-render', function(){
             // First file
             should.exist(output);
             should.exist(output.contents);
-            output.path.should.equal('fixtures/set.html');
+            output.path.should.equal(path.normalize('fixtures/set.html'));
             output.contents.toString().should.equal(expected1);
 
             stream.once('data', function(output){
                 // Second file
                 should.exist(output);
                 should.exist(output.contents);
-                output.path.should.equal('fixtures/hello-world.html');
+                output.path.should.equal(path.normalize('fixtures/hello-world.html'));
                 output.contents.toString().should.equal(expected2);
             });
 
