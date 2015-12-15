@@ -7,7 +7,7 @@
 
 ## Install
 
-Install with [npm](https://npmjs.org/package/gulp-nunjucks)
+Install with [npm](https://www.npmjs.com/package/gulp-nunjucks-render)
 
 ```
 npm install --save-dev gulp-nunjucks-render
