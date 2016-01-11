@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/carlosl/gulp-nunjucks-render.svg?branch=master)](https://travis-ci.org/carlosl/gulp-nunjucks-render)
+
 # [gulp](https://github.com/wearefractal/gulp)-nunjucks-render
 
 > Render [Nunjucks](http://jlongster.github.io/nunjucks/) templates
