@@ -9,7 +9,7 @@ module.exports = function (options, loaders, env ) {
     options = options || {};
     // ext = output file extension
     // Check if output file extension is mentioned or not
-    if (!options.ext) {
+    if (options.ext === undefined) {
         // Apply default output extension
         options.ext = '.html';
     }
