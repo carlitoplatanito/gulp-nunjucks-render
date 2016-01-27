@@ -52,6 +52,11 @@ module.exports = function (options, loaders, env ) {
                   return cb();
                 }
                 file.contents = new Buffer(result);
+                // if extension need to be inherited
+                if(options.inheritExtension){
+                    // Then apply the same extension 
+                    options.ext = filePath.substr(filePath.lastIndexOf("."));
+                }
                 // output file with the mentioned/default extension
                 file.path = gutil.replaceExtension(file.path, options.ext);
                 _this.push(file);
