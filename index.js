@@ -58,7 +58,7 @@ module.exports = function (options, loaders, env ) {
                     options.ext = filePath.substr(filePath.lastIndexOf("."));
                 }
                 // output file with the mentioned/default extension
-                file.path = gutil.replaceExtension(file.path, options.ext);
+                file.path = gutil.replaceExtension(filePath, options.ext);
                 _this.push(file);
                 cb();
             });
