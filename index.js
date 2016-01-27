@@ -52,13 +52,11 @@ module.exports = function (options, loaders, env ) {
                   return cb();
                 }
                 file.contents = new Buffer(result);
-                // if extension need to be inherited
-                if(options.inheritExtension) {
-                    // Then apply the same extension
-                    options.ext = filePath.substr(filePath.lastIndexOf("."));
+                // Replace extension with mentioned/default extension
+                // only if inherit extension flag is not provided(truthy)
+                if (!options.inheritExtension) {
+                  file.path = gutil.replaceExtension(filePath, options.ext);
                 }
-                // output file with the mentioned/default extension
-                file.path = gutil.replaceExtension(filePath, options.ext);
                 _this.push(file);
                 cb();
             });
