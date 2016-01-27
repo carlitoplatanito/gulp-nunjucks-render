@@ -1,3 +1,10 @@
+# 1.1.10
+* Check if `ext` option is undefined to allow passing no extension (#29)
+* Add `inheritExtension` option to allow using same extension after compilation(#33)
+
+# 1.1.0
+* Update nunjucks to 2.0 and allow mocha to run on Windows (#31)
+
 # 1.0
 * Update nunjucks lib to allows for latest version 1.2.0+ (#23)
 * Prevent gulp watch from crashing when error occurs (#17)

@@ -53,8 +53,8 @@ module.exports = function (options, loaders, env ) {
                 }
                 file.contents = new Buffer(result);
                 // if extension need to be inherited
-                if(options.inheritExtension){
-                    // Then apply the same extension 
+                if(options.inheritExtension) {
+                    // Then apply the same extension
                     options.ext = filePath.substr(filePath.lastIndexOf("."));
                 }
                 // output file with the mentioned/default extension

@@ -197,4 +197,20 @@ describe('gulp-nunjucks-render', function(){
         stream.write(file);
         stream.end();
     });
+
+    it('should inherit extension if inheritExtension option is provided', function(done) {
+        var stream = nunjucksRender({inheritExtension: true});
+        var expected = getExpected('base.tpl');
+        var file = getFile('fixtures/base.tpl');
+
+        stream.once('data', function(output) {
+            should.exist(output);
+            should.exist(output.contents);
+            output.contents.toString().should.equal(expected);
+            path.extname(output.path).should.equal('.tpl');
+            done();
+        });
+        stream.write(file);
+        stream.end();
+    });
 });
