@@ -7,6 +7,12 @@ nunjucks.configure({ watch: false });
 
 module.exports = function (options, loaders, env ) {
     options = options || {};
+    // ext = output file extension		
+    // Check if output file extension is mentioned or not		
+    if (options.ext === undefined) {		
+        // Apply default output extension		
+        options.ext = '.html';		
+    }
 
     var compile = nunjucks;
     if( loaders || env ){
@@ -46,8 +52,8 @@ module.exports = function (options, loaders, env ) {
                   return cb();
                 }
                 file.contents = new Buffer(result);
-                // if options.ext is not mentioned
-                if(options.ext === undefined){
+                // if extension needed to be inherited
+                if(options.inheritExtension){
                     // Then apply the same extension 
                     options.ext = filePath.substr(filePath.lastIndexOf("."));
                 }
