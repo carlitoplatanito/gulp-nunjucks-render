@@ -23,15 +23,13 @@ var gulp = require('gulp');
 var nunjucksRender = require('gulp-nunjucks-render');
 
 gulp.task('default', function () {
-	nunjucksRender.nunjucks.configure(['src/templates/'], {watch: false});
 	return gulp.src('src/templates/*.html')
-		.pipe(nunjucksRender())
+		.pipe(nunjucksRender({
+            path: ['src/templates/'] // String or Array
+        }))
 		.pipe(gulp.dest('dist'));
 });
 ```
-
-*Note: To keep Nunjucks render from eating up all your ram, make sure to specify your watch path and turn off Nunjucks' internal watcher. ```nunjucksRender.nunjucks.configure(['src/path/to/templates/'], {watch: false});``` This will also allow you to define your paths relatively.*
-
 
 ## Example with gulp data
 
@@ -40,17 +38,18 @@ var gulp = require('gulp');
 var nunjucksRender = require('gulp-nunjucks-render');
 var data = require('gulp-data');
 
-function getDataForFile(file){
+function getDataForFile(file) {
     return {
         example: 'data loaded for ' + file.relative
     };
 }
 
 gulp.task('default', function () {
-	nunjucksRender.nunjucks.configure(['src/templates/'], {watch: false});
 	return gulp.src('src/templates/*.html')
 	    .pipe(data(getDataForFile))
-		.pipe(nunjucksRender())
+		.pipe(nunjucksRender({
+            path: 'src/templates'
+        }))
 		.pipe(gulp.dest('dist'));
 });
 ```
@@ -58,13 +57,41 @@ gulp.task('default', function () {
 
 ## API
 
-### nunjucks-render(context)
+## Options
+Plugin accepts options object, which contain these by default:
 
-Same context as [`nunjucks.render()`](http://jlongster.github.io/nunjucks/api.html#render).
-
-For example
 ```
-nunjucksRender({css_path: 'http://company.com/css/'});
+var defaults = {
+  path: '.',
+  ext: '.html',
+  data: {},
+  inheritExtension: false,
+  envOptions: {
+    watch: false
+  },
+  manageEnv: null,
+  loaders: null
+};
+```
+
+* `path` - Relative path to templates
+* `ext` - Extension for compiled templates, pass null or empty string if yo don't want any extension
+* `data` - Data passed to template
+* `inheritExtension` - If true, uses same extension that is used for template
+* `envOptions` - These are options provided for nunjucks Environment. More info [here](https://mozilla.github.io/nunjucks/api.html#configure).
+* `manageEnv` - Hook for managing environment before compilation. Useful for adding custom filters, globals, etc. Example [below](#environment)
+* `loaders` - If provided, uses that as first parameter to Environment constructor. Otherwise, uses provided `path`. More info [here](https://mozilla.github.io/nunjucks/api.html#environment)
+
+For more info about nunjucks functionality, check [https://mozilla.github.io/nunjucks/api.html](https://mozilla.github.io/nunjucks/api.html) and also a source code of this plugin.
+
+
+### Data
+U can pass data as option, or you can use gulp-data like in example above.
+
+```
+nunjucksRender({data: {
+    css_path: 'http://company.com/css/'
+}});
 ```
 
 For the following template
@@ -77,11 +104,36 @@ Would render
 <link rel="stylesheet" href="http://company.com/css/test.css" />
 ```
 
-### Watch mode
-To prevent Nunjucks internal watch mode during gulp task use `watch` parameter:
+### Environment
+
+If you want to manage environment (add custom filters or globals), you can to that with `manageEnv` function hook:
 
 ```
-nunjucksRender.nunjucks.configure([ './source' ], { watch: false });
+var manageEnvironment = function(environment) {
+  environment.addFilter('slug', function(str) {
+    return str && str.replace(/\s/g, '-', str).toLowerCase();
+  });
+
+  environment.addGlobal('globalTitle', 'My global title')
+}
+
+  nunjucksRender({
+    manageEnv: manageEnvironment
+  }):
+```
+
+After adding that, you can use them in template like this:
+
+```
+<h1>{{ globalTitle }}</h1>
+<h3>{{ 'My important post'|slug }}</h3>
+```
+
+And get this result:
+
+```
+<h1>My global title</h1>
+<h3>my-important-post</h3>
 ```
 
 ## License
