@@ -23,11 +23,11 @@ var gulp = require('gulp');
 var nunjucksRender = require('gulp-nunjucks-render');
 
 gulp.task('default', function () {
-	return gulp.src('src/templates/*.html')
-		.pipe(nunjucksRender({
-            path: ['src/templates/'] // String or Array
-        }))
-		.pipe(gulp.dest('dist'));
+  return gulp.src('src/templates/*.html')
+    .pipe(nunjucksRender({
+      path: ['src/templates/'] // String or Array
+    }))
+    .pipe(gulp.dest('dist'));
 });
 ```
 
@@ -39,18 +39,18 @@ var nunjucksRender = require('gulp-nunjucks-render');
 var data = require('gulp-data');
 
 function getDataForFile(file) {
-    return {
-        example: 'data loaded for ' + file.relative
-    };
+  return {
+    example: 'data loaded for ' + file.relative
+  };
 }
 
 gulp.task('default', function () {
 	return gulp.src('src/templates/*.html')
-	    .pipe(data(getDataForFile))
-		.pipe(nunjucksRender({
-            path: 'src/templates'
-        }))
-		.pipe(gulp.dest('dist'));
+    .pipe(data(getDataForFile))
+    .pipe(nunjucksRender({
+      path: 'src/templates'
+    }))
+    .pipe(gulp.dest('dist'));
 });
 ```
 
@@ -60,7 +60,7 @@ gulp.task('default', function () {
 ## Options
 Plugin accepts options object, which contain these by default:
 
-```
+```js
 var defaults = {
   path: '.',
   ext: '.html',
@@ -88,19 +88,19 @@ For more info about nunjucks functionality, check [https://mozilla.github.io/nun
 ### Data
 U can pass data as option, or you can use gulp-data like in example above.
 
-```
+```js
 nunjucksRender({data: {
-    css_path: 'http://company.com/css/'
+  css_path: 'http://company.com/css/'
 }});
 ```
 
 For the following template
-```
+```html
 <link rel="stylesheet" href="{{ css_path }}test.css" />
 ```
 
 Would render
-```
+```html
 <link rel="stylesheet" href="http://company.com/css/test.css" />
 ```
 
@@ -108,7 +108,7 @@ Would render
 
 If you want to manage environment (add custom filters or globals), you can to that with `manageEnv` function hook:
 
-```
+```javascript
 var manageEnvironment = function(environment) {
   environment.addFilter('slug', function(str) {
     return str && str.replace(/\s/g, '-', str).toLowerCase();
@@ -117,21 +117,21 @@ var manageEnvironment = function(environment) {
   environment.addGlobal('globalTitle', 'My global title')
 }
 
-  nunjucksRender({
-    manageEnv: manageEnvironment
-  }):
+nunjucksRender({
+  manageEnv: manageEnvironment
+}):
 ```
 
 After adding that, you can use them in template like this:
 
-```
+```html
 <h1>{{ globalTitle }}</h1>
 <h3>{{ 'My important post'|slug }}</h3>
 ```
 
 And get this result:
 
-```
+```html
 <h1>My global title</h1>
 <h3>my-important-post</h3>
 ```
