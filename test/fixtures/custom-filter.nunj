@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Test nunjucks project</title>
+</head>
+<body>
+    <h1>{{ globalTitle }}</h1>
+    <h2>{{ ''|defaultName('Peter Smith') }}</h2>
+    <h3>{{ 'jane cortwel'|defaultName }}</h3>
+</body>
+</html>
