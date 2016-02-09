@@ -138,7 +138,7 @@ And get this result:
 
 ## License
 
-MIT © [Carlos G. Limardo](http://limardo.org)
+MIT © [Carlos G. Limardo](http://limardo.org) and [Kristijan Husak](http://kristijanhusak.com)
 
 ## Shout-outs
 
