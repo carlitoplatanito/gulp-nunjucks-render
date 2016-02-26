@@ -4,8 +4,7 @@ var gutil = require('gulp-util');
 var through = require('through2');
 var nunjucks = require('nunjucks');
 
-module.exports = function (options) {
-  var defaults = {
+var defaults = {
     path: '.',
     ext: '.html',
     data: {},
@@ -14,7 +13,9 @@ module.exports = function (options) {
       watch: false
     },
     manageEnv: null
-  }
+};
+
+module.exports = function (options) {
   options = _.defaultsDeep(options || {}, defaults);
   nunjucks.configure(options.envOptions);
 
@@ -73,6 +74,10 @@ module.exports = function (options) {
       cb();
     }
   });
+};
+
+module.exports.setDefaults = function (options) {
+  defaults = _.defaultsDeep(options || {}, defaults);
 };
 
 module.exports.nunjucks = nunjucks;
