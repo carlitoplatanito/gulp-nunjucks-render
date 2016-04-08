@@ -272,4 +272,50 @@ describe('gulp-nunjucks-render', function(){
     stream.write(file);
     stream.end();
   });
+
+  it('should use custom default config', function(done){
+    var customNunjucksRender = require('../');
+
+    customNunjucksRender.setDefaults({
+      envOptions: {
+        autoescape: true
+      }
+    });
+
+    var streamAutoescape = customNunjucksRender({
+      data: {
+        html: '<strong>Hello World!</strong>'
+      }
+    });
+
+    var fileAutoescape = getFile('fixtures/global.nunj');
+    var fileNotAutoescape = getFile('fixtures/global.nunj');
+    var expectedAutoescape = getExpected('global.html');
+    var expectedNotAutoescape = getExpected('global-not-excaped.html');
+
+    streamAutoescape.once('data', function(output) {
+      output.contents.toString().should.equal(expectedAutoescape);
+
+      customNunjucksRender.setDefaults({
+        envOptions: {
+          autoescape: false
+        }
+      });
+
+      var streamNotAutoescape = customNunjucksRender({
+        data: {
+          html: '<strong>Hello World!</strong>'
+        }
+      });
+
+      streamNotAutoescape.once('data', function(output) {
+        output.contents.toString().should.equal(expectedNotAutoescape);
+        done();
+      });
+      streamNotAutoescape.write(fileNotAutoescape);
+      streamNotAutoescape.end();
+    });
+    streamAutoescape.write(fileAutoescape);
+    streamAutoescape.end();
+  });
 });
