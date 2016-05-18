@@ -2,9 +2,9 @@
 
 # [gulp](https://github.com/wearefractal/gulp)-nunjucks-render
 
-> Render [Nunjucks](http://jlongster.github.io/nunjucks/) templates
+> Render [Nunjucks](http://mozilla.github.io/nunjucks/) templates
 
-*Issues with the output should be reported on the Nunjucks [issue tracker](https://github.com/jlongster/nunjucks/issues).*
+*Issues with the output should be reported on the Nunjucks [issue tracker](https://github.com/mozilla/nunjucks/issues).*
 
 
 ## Install
