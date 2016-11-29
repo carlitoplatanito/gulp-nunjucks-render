@@ -27,8 +27,10 @@
     "javascript"
   ],
   "dependencies": {
+    "front-matter": "^2.1.1",
     "gulp-util": "^3.0.7",
     "lodash": "^4.17.2",
+    "marked": "^0.3.6",
     "nunjucks": "^3.0.0",
     "through2": "^2.0.3"
   },
