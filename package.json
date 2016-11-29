@@ -27,14 +27,14 @@
     "javascript"
   ],
   "dependencies": {
-    "gulp-util": "~2.2.0",
-    "lodash": "^3.3.0",
-    "nunjucks": "^2.0.0",
-    "through2": "~0.4.0"
+    "gulp-util": "^3.0.7",
+    "lodash": "^4.17.2",
+    "nunjucks": "^3.0.0",
+    "through2": "^2.0.3"
   },
   "devDependencies": {
-    "mocha": "^2.1.0",
-    "should": "^5.0.1"
+    "mocha": "^3.2.0",
+    "should": "^11.1.1"
   },
   "readmeFilename": "readme.md",
   "bugs": {
