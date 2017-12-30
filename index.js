@@ -1,6 +1,7 @@
 'use strict';
 var _ = require('lodash');
-var gutil = require('gulp-util');
+var PluginError = require('plugin-error');
+var replaceExtension = require('replace-ext');
 var through = require('through2');
 var nunjucks = require('nunjucks');
 
@@ -46,7 +47,7 @@ module.exports = function (options) {
     }
 
     if (file.isStream()) {
-      this.emit('error', new gutil.PluginError('gulp-nunjucks', 'Streaming not supported'));
+      this.emit('error', new PluginError('gulp-nunjucks', 'Streaming not supported'));
       return cb();
     }
 
@@ -57,20 +58,20 @@ module.exports = function (options) {
     try {
       compile.renderString(file.contents.toString(), data, function (err, result) {
         if (err) {
-          _this.emit('error', new gutil.PluginError('gulp-nunjucks', err, {fileName: filePath}));
+          _this.emit('error', new PluginError('gulp-nunjucks', err, {fileName: filePath}));
           return cb();
         }
         file.contents = new Buffer(result);
         // Replace extension with mentioned/default extension
         // only if inherit extension flag is not provided(truthy)
         if (!options.inheritExtension) {
-          file.path = gutil.replaceExtension(filePath, options.ext);
+          file.path = replaceExtension(filePath, options.ext);
         }
         _this.push(file);
         cb();
       });
     } catch (err) {
-      _this.emit('error', new gutil.PluginError('gulp-nunjucks', err, {fileName: filePath}));
+      _this.emit('error', new PluginError('gulp-nunjucks', err, {fileName: filePath}));
       cb();
     }
   });
