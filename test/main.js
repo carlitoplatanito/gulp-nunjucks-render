@@ -1,7 +1,7 @@
 'use strict';
 
 var should = require('should');
-var gutil = require('gulp-util');
+var Vinyl = require('vinyl');
 var nunjucksRender = require('../');
 var fs = require('fs');
 var path = require('path');
@@ -9,7 +9,7 @@ var path = require('path');
 require('mocha');
 
 function getFile(filepath){
-  return new gutil.File({
+  return new Vinyl({
     base: 'test/fixtures',
     cwd: 'test',
     path: filepath,
