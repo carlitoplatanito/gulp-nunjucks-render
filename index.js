@@ -61,7 +61,7 @@ module.exports = function (options) {
           _this.emit('error', new PluginError('gulp-nunjucks', err, {fileName: filePath}));
           return cb();
         }
-        file.contents = new Buffer(result);
+        file.contents = Buffer.from(result);
         // Replace extension with mentioned/default extension
         // only if inherit extension flag is not provided(truthy)
         if (!options.inheritExtension) {
