@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/carlosl/gulp-nunjucks-render"
+    "url": "git://github.com/carlitoplatanito/gulp-nunjucks-render"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -40,8 +40,8 @@
   },
   "readmeFilename": "readme.md",
   "bugs": {
-    "url": "https://github.com/carlosl/gulp-nunjucks-render/issues"
+    "url": "https://github.com/carlitoplatanito/gulp-nunjucks-render/issues"
   },
-  "homepage": "https://github.com/carlosl/gulp-nunjucks-render",
+  "homepage": "https://github.com/carlitoplatanito/gulp-nunjucks-render",
   "_id": "gulp-nunjucks-render@0.0.1"
 }
